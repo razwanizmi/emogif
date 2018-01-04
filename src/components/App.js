@@ -16,16 +16,29 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { phrase } = this.state;
 
     this.setState(() => ({ speaking: true }));
 
+    if (phrase.length === 0) {
+      return this.setState(() => ({ speaking: false }));
+    }
+
     this.interval = setInterval(() => {
+      if (phrase.length < 2) {
+        clearInterval(this.interval);
+        return this.setState(() => ({
+          phrase: "",
+          speaking: false
+        }));
+      }
+
       this.setState(
         prevState => ({
           currentIndex: prevState.currentIndex + 1
         }),
         () => {
-          if (this.state.currentIndex === this.state.phrase.length - 1) {
+          if (this.state.currentIndex === phrase.length - 1) {
             clearInterval(this.interval);
             this.setState(() => ({
               speaking: false,
@@ -44,6 +57,7 @@ class App extends Component {
 
   render() {
     const { phrase, currentIndex, speaking } = this.state;
+    console.log(phrase);
 
     return (
       <div className="emogif-container">
