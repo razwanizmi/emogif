@@ -1,0 +1,29 @@
+.emogif-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.emogif-form-container {
+  margin-top: 2rem;
+}
+
+.emogif-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.emogif-face {
+  font-size: 15rem;
+}
+
+.mld-textfield__input--emogif {
+  text-align: center;
+  outline: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
