@@ -28,5 +28,8 @@ const emojiMap = {
 };
 
 export function toEmoji(char) {
+  if (!char) {
+    return "😐"
+  }
   return emojiMap[char.toLowerCase()] || "😐";
 }
