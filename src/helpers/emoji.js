@@ -1,35 +1,17 @@
 const emojiMap = {
-  a: "😀",
-  b: "😐",
-  c: "🙂",
-  d: "😲",
-  e: "😮",
-  f: "😐",
-  g: "🙂",
-  h: "😐",
-  i: "😀",
-  j: "🙂",
-  k: "🙂",
-  l: "😲",
-  m: "😐",
-  n: "🙂",
-  o: "😮",
-  p: "😐",
-  q: "😯",
-  r: "🙂",
-  s: "🙂",
-  t: "🙂",
-  u: "😯",
-  v: "🙂",
-  w: "😯",
-  x: "🙂",
-  y: "😯",
-  z: "🙂"
+  "😮": ["o", "e"],
+  "😐": ["b", "p", "m"],
+  "🙂": ["c", "g", "j", "k", "n", "r", "s", "t", "v", "x", "z"],
+  "😲": ["d", "l"],
+  "😯": ["q", "u", "w", "y"],
+  "😀": ["a", "i"]
 };
+const defaultEmoji = "😐";
 
-export function toEmoji(char) {
-  if (!char) {
-    return "😐"
-  }
-  return emojiMap[char.toLowerCase()] || "😐";
-}
+export const toEmoji = char => {
+  return (
+    Object.keys(emojiMap).find(emoji =>
+      emojiMap[emoji].includes(char.toLowerCase())
+    ) || defaultEmoji
+  );
+};

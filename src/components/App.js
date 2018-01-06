@@ -4,8 +4,8 @@ import "./style.css";
 
 class App extends Component {
   state = {
-    phrase: "",
     currentIndex: 0,
+    phrase: "",
     speaking: false
   };
 
@@ -16,40 +16,32 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { phrase } = this.state;
 
-    this.setState(() => ({ speaking: true }));
-
-    if (phrase.length === 0) {
-      return this.setState(() => ({ speaking: false }));
+    if (!this.state.phrase) {
+      return;
     }
 
+    this.setState(() => ({ speaking: true }));
     this.interval = setInterval(() => {
-      this.setState(
-        prevState => {
-          if (prevState.currentIndex !== phrase.length) {
-            return {
-              currentIndex: prevState.currentIndex + 1
-            };
-          }
-          return prevState;
-        },
-        () => {
-          if (this.state.currentIndex === phrase.length) {
-            clearInterval(this.interval);
-            this.setState(() => ({
-              speaking: false,
-              currentIndex: 0,
-              phrase: ""
-            }));
-          }
-        }
-      );
+      this.animate();
     }, 97);
   };
 
-  phraseArray = () => {
-    return this.state.phrase.split("");
+  animate = () => {
+    const { currentIndex, phrase } = this.state;
+
+    if (currentIndex < phrase.length - 1) {
+      return this.setState(prevState => ({
+        currentIndex: prevState.currentIndex + 1
+      }));
+    }
+
+    clearInterval(this.interval);
+    this.setState(() => ({
+      currentIndex: 0,
+      phrase: "",
+      speaking: false
+    }));
   };
 
   render() {
@@ -59,7 +51,7 @@ class App extends Component {
       <div className="emogif-container">
         <div>
           <span className="emogif-face">
-            {speaking ? toEmoji(this.phraseArray()[currentIndex]) : "🙂"}
+            {speaking ? toEmoji(phrase[currentIndex]) : "🙂"}
           </span>
         </div>
         <div className="emogif-form-container">
