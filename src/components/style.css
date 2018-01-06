@@ -1,29 +1,26 @@
-.emogif-container {
+.emogif {
+  align-items: center;
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  justify-content: center;
 }
 
-.emogif-form-container {
+.emogif__face {
+  font-size: 160px;
+}
+
+.emogif__form {
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
 }
 
-.emogif-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.emogif-face {
-  font-size: 15rem;
-}
-
 .mld-textfield__input--emogif {
-  text-align: center;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   outline: none;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
+  text-align: center;
 }

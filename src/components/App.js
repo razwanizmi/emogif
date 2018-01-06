@@ -48,31 +48,29 @@ class App extends Component {
     const { phrase, currentIndex, speaking } = this.state;
 
     return (
-      <div className="emogif-container">
+      <div className="emogif">
         <div>
-          <span className="emogif-face">
+          <span className="emogif__face">
             {speaking ? toEmoji(phrase[currentIndex]) : "🙂"}
           </span>
         </div>
-        <div className="emogif-form-container">
-          <form className="emogif-form" onSubmit={this.handleSubmit}>
-            <div className="mdl-textfield">
-              <input
-                className="mdl-textfield__input mld-textfield__input--emogif"
-                type="text"
-                value={phrase}
-                placeholder="What do you want me to say?"
-                onChange={this.handleChange}
-              />
-            </div>
-            <button
-              className="mdl-button mdl-button--raised mdl-button--accent"
-              disabled={speaking}
-            >
-              Talk
-            </button>
-          </form>
-        </div>
+        <form className="emogif__form" onSubmit={this.handleSubmit}>
+          <div className="mdl-textfield">
+            <input
+              className="mdl-textfield__input mld-textfield__input--emogif"
+              type="text"
+              value={phrase}
+              placeholder="What do you want me to say?"
+              onChange={this.handleChange}
+            />
+          </div>
+          <button
+            className="mdl-button mdl-button--raised mdl-button--accent"
+            disabled={speaking}
+          >
+            Talk
+          </button>
+        </form>
       </div>
     );
   }
