@@ -15,19 +15,27 @@ class App extends Component {
   };
 
   handleSubmit = e => {
+    const { phrase } = this.state;
     e.preventDefault();
 
-    if (!this.state.phrase) {
+    if (!phrase) {
       return;
     }
 
     this.setState(() => ({ speaking: true }));
+    this.handleSpeech(phrase)
     this.interval = setInterval(() => {
-      this.animate();
-    }, 97);
+      this.handleAnimation();
+    }, 55);
   };
 
-  animate = () => {
+  handleSpeech = phrase => {
+    const speech = new SpeechSynthesisUtterance(phrase);
+    speech.lang = "en-GB";
+    speechSynthesis.speak(speech);
+  }
+
+  handleAnimation = () => {
     const { currentIndex, phrase } = this.state;
 
     if (currentIndex < phrase.length - 1) {
